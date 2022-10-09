@@ -54,7 +54,7 @@ const removeTodo = (id) => {
 
 const clearTodoList = (todoList) => {
     const user = getUser();
-    set(ref(db, `todoList/${user.uid}`), todoList);
+    set(ref(db, `todoList/${user.uid}/${todoList.id}`), todoList);
 };
 
 //login detect
