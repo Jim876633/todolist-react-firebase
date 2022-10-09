@@ -1,0 +1,153 @@
+@import "../variables";
+@import "../mixin";
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    @include center;
+    width: min(40rem, 90%);
+    height: 45rem;
+    background: $color-secondary;
+    border-radius: 3rem;
+    padding: 2rem 3rem;
+
+    .message {
+        position: absolute;
+        bottom: -5rem;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 20rem;
+        padding: 0.5rem;
+        border-radius: 1rem;
+        background: $color-danger;
+        text-align: center;
+        &.success {
+            background: $color-success;
+        }
+    }
+
+    .closeButton {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        width: 3rem;
+        height: 3rem;
+        border: none;
+        background: none;
+        padding: 0;
+        @include speed(0.2s);
+        &:hover {
+            transform: rotate(45deg);
+        }
+        .icon {
+            @include center;
+            width: 100%;
+            height: 100%;
+            color: $color-white;
+        }
+    }
+    .title {
+        font-size: $fz-tag;
+        font-weight: 700;
+        text-align: center;
+    }
+    .titleInput,
+    .detailInput {
+        border: none;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        width: 100%;
+        font-size: inherit;
+        &:focus {
+            outline: 3px solid $color-success;
+        }
+        &.inValid:focus {
+            position: relative;
+            outline: 3px solid $color-danger;
+        }
+    }
+    .detailInput {
+        resize: none;
+    }
+    .priority {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        .title,
+        button {
+            font-size: inherit;
+            font-weight: 400;
+        }
+        button {
+            border-radius: 1rem;
+            padding: 0.5rem 1rem;
+            opacity: 0.5;
+            margin-left: 1rem;
+            flex: 1 1;
+            &:hover {
+                opacity: 1;
+            }
+            &.active {
+                opacity: 1;
+            }
+        }
+        .lowButton {
+            border: 1px solid $color-low;
+            background: lighten($color-low, 50);
+        }
+        .mediumButton {
+            border: 1px solid $color-medium;
+            background: lighten($color-medium, 20);
+        }
+        .highButton {
+            border: 1px solid $color-high;
+            background: lighten($color-high, 20);
+        }
+    }
+    .timeBlock {
+        display: flex;
+        gap: 1rem;
+        width: 100%;
+        @include respond(ipad) {
+            flex-direction: column;
+        }
+        .date,
+        .time {
+            flex: 1 1;
+            display: flex;
+            justify-content: space-between;
+            @include respond(ipad) {
+                & > input {
+                    flex: 2 2;
+                }
+                & > label {
+                    flex: 1 1;
+                }
+            }
+            input {
+                border: none;
+                border-radius: 0.5rem;
+                &:focus {
+                    outline: 3px solid $color-low;
+                }
+            }
+        }
+    }
+    .addButton {
+        width: 100%;
+        border-radius: 0.5rem;
+        border: none;
+        font-size: inherit;
+        font-weight: 600;
+        padding: 0.5rem 0;
+        color: $color-secondary;
+        &:hover {
+            background: $color-primary;
+            color: $color-white;
+        }
+    }
+}

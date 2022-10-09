@@ -1,0 +1,33 @@
+@import "../variables";
+@import "../mixin";
+
+.container {
+    background: $color-primary-light;
+    width: 100vw;
+    height: 100vh;
+    .error {
+        width: 80%;
+        height: 20rem;
+        @include center;
+        top: -5rem;
+        text-align: center;
+        .text {
+            font-size: $fz-title;
+            font-weight: 700;
+            color: $color-dark;
+        }
+        .backButton {
+            padding: 1rem 2rem;
+            font-size: $fz-tag;
+            margin-top: 3rem;
+            border: 2px solid $color-primary;
+            border-radius: 1rem;
+            background: rgba($color-primary, 0.2);
+            @include speed(0.5s);
+            cursor: pointer;
+            &:hover {
+                background: $color-primary;
+            }
+        }
+    }
+}

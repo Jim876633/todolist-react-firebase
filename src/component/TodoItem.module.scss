@@ -1,0 +1,152 @@
+@import "../variables";
+@import "../mixin";
+
+.todoItem {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid $color-secondary;
+    color: $color-secondary;
+    @include respond(phone) {
+        padding: 0 0.5rem 3rem;
+    }
+
+    &::after {
+        content: "";
+        display: none;
+        @include center;
+        width: 100%;
+        height: 0.5px;
+        background: $color-danger;
+    }
+    .checkbox {
+        position: relative;
+        flex-shrink: 0;
+        width: 2rem;
+        height: 2rem;
+        margin-right: 1rem;
+        border: 1px solid $color-secondary;
+        @include respond(phone) {
+            margin-top: 3rem;
+        }
+        .check {
+            @include center;
+            font-size: 1.5rem;
+        }
+    }
+    .checkbox,
+    .title {
+        cursor: pointer;
+    }
+    .title,
+    .time,
+    .priority,
+    .detailButton {
+        font-size: $fz-text;
+    }
+    .title {
+        flex: 1 1;
+        @include respond(phone) {
+            margin-top: 3.5rem;
+        }
+    }
+    .priority {
+        width: 10rem;
+        margin-right: 2rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        @include respond(phone) {
+            margin-right: 0;
+            margin-bottom: 1rem;
+        }
+        &.medium {
+            @include priorityStyle(medium);
+        }
+        &.high {
+            @include priorityStyle(high);
+        }
+        &.low {
+            @include priorityStyle(low);
+        }
+    }
+    .time {
+        // border: 1px solid black;
+        min-width: 6rem;
+        text-align: center;
+        @include respond(phone) {
+            position: absolute;
+            bottom: 1rem;
+            right: 8rem;
+        }
+    }
+
+    .detailButton {
+        padding: 0 1rem;
+        border-radius: 0.5rem;
+        color: currentColor;
+        text-decoration: none;
+        margin-left: 1rem;
+        font-size: $fz-text;
+        border: 1px solid transparent;
+        border-bottom: 1px solid $color-secondary;
+        background: lighten($color-secondary, 65);
+        @include respond(phone) {
+            position: absolute;
+            bottom: 1rem;
+            right: 0;
+        }
+        cursor: pointer;
+        &:hover {
+            background: $color-secondary;
+            color: $color-white;
+        }
+    }
+
+    .editButton,
+    .editButtonInvalid,
+    .removeButton {
+        border: none;
+        background: none;
+        color: inherit;
+        padding: 0;
+        margin-left: 2rem;
+        @include respond(phone) {
+            margin-bottom: 1rem;
+        }
+        .icon {
+            font-size: 2rem;
+        }
+    }
+    .editButtonInvalid {
+        cursor: auto;
+    }
+    &.finish {
+        color: $color-danger;
+        .checkbox {
+            border: 1px solid $color-danger;
+        }
+        &::after {
+            display: block;
+        }
+        .priority {
+            &.low,
+            &.high,
+            &.medium {
+                background: none;
+                border: 1px solid $color-danger;
+                color: currentColor;
+            }
+        }
+        .detailButton {
+            background: none;
+            border: 1px solid $color-danger;
+            color: currentColor;
+            cursor: auto;
+            &:hover {
+                background: none;
+                color: currentColor;
+            }
+        }
+    }
+}

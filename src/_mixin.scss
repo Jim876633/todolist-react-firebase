@@ -1,0 +1,45 @@
+@import "./variables";
+
+@mixin center {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+@mixin speed($time) {
+    transition: all $time;
+}
+
+@mixin priorityStyle($priority) {
+    @if $priority == low {
+        background: lighten($color-low, 65);
+        border: 1px solid lighten($color-low, 20);
+        color: $color-dark;
+    }
+    @if $priority == medium {
+        background: lighten($color-medium, 40);
+        border: 1px solid $color-medium;
+        color: $color-dark;
+    }
+    @if $priority == high {
+        background: lighten($color-high, 45);
+        border: 1px solid lighten($color-high, 30);
+        color: $color-dark;
+    }
+}
+
+@mixin respond($device) {
+    @if $device == ipad {
+        @media (max-width: 768px) {
+            @content;
+        }
+    }
+    @if $device == phone {
+        @media (max-width: 576px) {
+            @content;
+        }
+    }
+}

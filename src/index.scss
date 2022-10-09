@@ -1,0 +1,41 @@
+@import "./variables";
+@import "./mixin";
+
+html {
+    font-size: 62.8%;
+    @include respond(ipad) {
+        font-size: 53%;
+    }
+    @include respond(phone) {
+        font-size: 50%;
+    }
+    overflow: hidden;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    font-family: "Comic Neue", cursive, "Noto Sans TC", sans-serif;
+    text-transform: capitalize;
+}
+*::-webkit-scrollbar {
+    width: 0.6rem;
+    height: 0.5rem;
+}
+*::-webkit-scrollbar-track-piece {
+    background: lighten($color-secondary, 60);
+    border-radius: 1rem;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: $color-secondary;
+    border-radius: 1rem;
+}
+
+button {
+    cursor: pointer;
+}

@@ -1,0 +1,68 @@
+@import "../variables";
+@import "../mixin";
+
+.container {
+    width: min(85%, 95rem);
+    height: 70vh;
+    margin: auto;
+    padding: 3rem 4vw;
+    border: 1px solid $color-primary;
+    border-radius: 3rem;
+    background: $color-white;
+    @include respond(phone) {
+        width: 90%;
+        margin-top: 10vh;
+    }
+    .title {
+        position: relative;
+        font-size: $fz-tag-title;
+        font-weight: 600;
+        color: $color-secondary;
+        text-align: center;
+        .buttons {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transform: translateY(-50%);
+            .sortButton,
+            .clearButton {
+                position: relative;
+                width: 4rem;
+                height: 4rem;
+                background: none;
+                border: 1px solid $color-primary;
+                border-radius: 50%;
+                .icon {
+                    @include center;
+                    font-size: 2rem;
+                    color: $color-primary;
+                }
+            }
+        }
+    }
+    .todoList {
+        margin-top: 2rem;
+        padding: 0 3rem 0 0;
+        height: 75%;
+        overflow-y: auto;
+    }
+    .addTodoButton {
+        position: absolute;
+        right: 2vw;
+        bottom: 2vw;
+        width: 5rem;
+        height: 5rem;
+        border: none;
+        border-radius: 50%;
+        background: $color-secondary;
+        box-shadow: 2px 2px 2px $color-dark;
+        .icon {
+            @include center;
+            font-size: 5rem;
+            color: $color-primary-light;
+        }
+    }
+}

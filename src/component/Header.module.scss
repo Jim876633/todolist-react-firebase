@@ -1,0 +1,58 @@
+@import "../variables";
+@import "../mixin";
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    padding: 0 3rem;
+    background: $color-secondary;
+    .logo,
+    .logoutButton {
+        width: 15rem;
+        font-size: $fz-login;
+        color: $color-primary-light;
+        text-align: center;
+    }
+    .profile {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        .imageBlock {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            .image {
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+        .greet {
+            font-size: $fz-login;
+            color: $color-primary-light;
+            margin-left: auto;
+            margin-right: auto;
+            @include respond(phone) {
+                visibility: hidden;
+            }
+            .name,
+            .nameChinese {
+                margin-right: 1rem;
+                font-family: "Noto Sans TC", sans-serif;
+            }
+            .nameChinese {
+                font-weight: 300;
+            }
+        }
+    }
+    .logoutButton {
+        border: none;
+        background: none;
+        @include respond(phone) {
+            display: none;
+        }
+    }
+}
