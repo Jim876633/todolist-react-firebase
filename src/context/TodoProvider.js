@@ -53,7 +53,7 @@ const TodoProvider = ({ children }) => {
         });
         setInitialTodoList(newTodoList);
 
-        firebase.clearTodoList(newTodoList);
+        firebase.clearTodoList(todoList);
     };
 
     const filterTodoList = () => {
