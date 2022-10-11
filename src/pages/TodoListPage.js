@@ -61,7 +61,7 @@ const TodoListPage = () => {
                 firebase.getTodoList(setInitialTodoList);
             }
         }
-    }, [authData]);
+    }, [authData && authData?.uid]);
 
     if (!authData || !authData.uid) return <LoadingPage />;
     return (

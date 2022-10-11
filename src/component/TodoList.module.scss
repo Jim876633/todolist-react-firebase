@@ -48,6 +48,11 @@
         padding: 0 3rem 0 0;
         height: 75%;
         overflow-y: auto;
+        .emptyTodoList {
+            font-size: $fz-tag;
+            color: $color-danger;
+            text-align: center;
+        }
     }
     .addTodoButton {
         position: absolute;

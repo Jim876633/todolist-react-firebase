@@ -5,9 +5,9 @@ import { TodoContext } from "./todoContext";
 import { firebase } from "../api/firebase";
 
 const TodoProvider = ({ children }) => {
-    const [initialTodoList, setInitialTodoList] = useState([]);
+    const [initialTodoList, setInitialTodoList] = useState(null);
 
-    const [todoList, setTodoList] = useState([]);
+    const [todoList, setTodoList] = useState(null);
 
     const [editId, setEditId] = useState(null);
 
@@ -127,7 +127,9 @@ const TodoProvider = ({ children }) => {
 
     useEffect(() => {
         setTodoList(initialTodoList);
-        filterTodoList();
+        if (initialTodoList) {
+            filterTodoList();
+        }
     }, [initialTodoList]);
 
     const todoListValue = {
