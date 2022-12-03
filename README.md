@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Todo list
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[💻 Live Demo](https://jim-todolist-react-firebase.netlify.app/)
 
-## Available Scripts
+[🎨 Design Figma](https://www.figma.com/file/H4fTXqarsDdUMaYGNyqe7O/Todolist?node-id=0%3A1&t=fawqtTuE5pRnIvmf-1)
 
-In the project directory, you can run:
+## Table of contents
 
-### `npm start`
+-   [Overview](#overview)
+    -   [Feature](#Feature)
+    -   [Built with](#built-with)
+    -   [Screenshot](#screenshot)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Overview
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Feature
 
-### `npm test`
+Users should be able to:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-   Home
+    -   Facebook login（Save your unique todo list）
+    -   Google login（Save your unique todo list）
+    -   Guest login ( Can't save todo list )
+-   TodoList
+    -   Add/ Remove/ Edit todo ( Title/ Detail/ Prority/ Date/ Time ) .
+    -   Filter width different tags （Overview/ Today/ Todo/ Finish）.
+    -   See the todo detial.
+    -   Sort todo by adding time.
 
-### `npm run build`
+### Built with
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-   RWD
+-   CSS module
+-   [React](https://reactjs.org/) - JS library.
+-   [React Router](https://reactrouter.com/en/main) - For route link.
+-   [SASS](https://sass-lang.com/guide) - CSS Preprocessor.
+-   [Firebase](https://firebase.google.com/) - save data and authentication.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Screenshot
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+-   Desktop
+<div style ="display:flex;flex-wrap:wrap;gap:10px;padding-block:10px;">
+    <img src= 'screenshot/desktop-4.jpeg' width = '45%'/>
+    <img src= 'screenshot/desktop-1.jpeg' width = '45%'/>
+    <img src= 'screenshot/desktop-2.jpeg' width = '45%'/>
+    <img src= 'screenshot/desktop-3.jpeg' width = '45%'/>
+</div>
 
-### `npm run eject`
+-   Mobile
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ <img src= 'screenshot/mobile.jpeg' width = '30%'/>
