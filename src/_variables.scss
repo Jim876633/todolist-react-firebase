@@ -18,3 +18,8 @@ $fz-tag-title: 4rem;
 $fz-tag: 2.5rem;
 $fz-login: 2.5rem;
 $fz-text: 2rem;
+
+//layout size
+
+$header-h: 6rem;
+$container-h: max(40rem, calc(100vh - $header-h));

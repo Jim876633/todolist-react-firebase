@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, useParams } from "react-router-dom";
 import classes from "./TodoListPage.module.scss";
 import Header from "../component/Header";
-import TagButton from "../component/TagButton";
 import TodoList from "../component/TodoList";
 import Modal from "../component/Modal";
 import DetailPage from "./DetailPage";
@@ -12,7 +11,7 @@ import { useTodoContext } from "../context/todoContext";
 import { firebase } from "../api/firebase";
 
 const TodoListPage = () => {
-    const { setEditId, setAuthData, setInitialTodoList, authData, tagRef } =
+    const { setEditId, setAuthData, setInitialTodoList, authData } =
         useTodoContext();
 
     const [showModal, setShowModal] = useState(false);
@@ -23,8 +22,6 @@ const TodoListPage = () => {
 
     const navigate = useNavigate();
 
-    const tagsItem = ["overview", "today", "todo", "finish"];
-
     const closeModal = (e) => {
         e.preventDefault();
         setShowModal(false);
@@ -33,12 +30,6 @@ const TodoListPage = () => {
     const openModal = (e) => {
         e.preventDefault();
         setShowModal(true);
-    };
-
-    const logoutHandler = () => {
-        firebase.logout(setAuthData);
-        setInitialTodoList([]);
-        tagRef.current = "today";
     };
 
     const toggleSidebar = () => {
@@ -74,23 +65,16 @@ const TodoListPage = () => {
                 }`}
                 onClick={toggleSidebar}
             ></div>
-            <div
-                className={`${classes.tagsButton} ${
-                    showSidebar && classes.showSidebar
-                }`}
-            >
-                {tagsItem.map((tagName) => (
-                    <TagButton key={tagName} tagName={tagName} />
-                ))}
-                <button
-                    className={classes.logoutButton}
-                    onClick={logoutHandler}
-                >
-                    logout
-                </button>
-            </div>
             <Routes>
-                <Route path="/" element={<TodoList openModal={openModal} />} />
+                <Route
+                    path="/"
+                    element={
+                        <TodoList
+                            openModal={openModal}
+                            showSidebar={showSidebar}
+                        />
+                    }
+                />
                 <Route path="/:detailId" element={<DetailPage />} />
             </Routes>
         </div>

@@ -4,7 +4,7 @@
 .container {
     position: relative;
     width: min(85%, 95rem);
-    height: 75vh;
+    height: 55rem;
     margin: auto;
     padding: 3rem 10rem;
     border: 1px solid $color-primary;
@@ -13,7 +13,6 @@
     transform: translateY(-4rem);
     @include respond(phone) {
         width: 90%;
-        height: 70vh;
         margin-top: 10vh;
         padding: 3rem;
         transform: translateY(0);

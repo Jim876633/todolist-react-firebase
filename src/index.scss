@@ -9,7 +9,8 @@ html {
     @include respond(phone) {
         font-size: 50%;
     }
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 body {
     margin: 0;

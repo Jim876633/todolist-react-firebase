@@ -2,14 +2,14 @@
 @import "../mixin";
 
 .container {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
     background: $color-primary-light;
     .backdrop {
         position: absolute;
-        top: 10vh;
+        top: $header-h;
         width: 100%;
-        height: 90vh;
+        height: $container-h;
         background: rgba($color-dark, 0);
         z-index: 10;
         visibility: hidden;
@@ -18,46 +18,6 @@
             &.showSidebar {
                 background: rgba($color-dark, 0.2);
                 visibility: visible;
-            }
-        }
-    }
-    .tagsButton {
-        display: flex;
-        width: min(calc(85vw - 6rem), 89rem);
-        margin: auto;
-        margin-top: 5vh;
-        transform: translateY(1px);
-        @include respond(phone) {
-            position: absolute;
-            flex-direction: column;
-            top: 10vh;
-            right: 0;
-            background: lighten($color-primary, 5);
-            height: 90vh;
-            width: min(50vw, 20rem);
-            margin-top: 0;
-            transform: translateY(0);
-            z-index: 10;
-            box-shadow: -1px 0 5px $color-dark;
-            transform: translateX(110%);
-            @include speed(0.5s);
-            &.showSidebar {
-                transform: translateX(0);
-            }
-        }
-        .logoutButton {
-            display: none;
-            @include respond(phone) {
-                display: block;
-                font-size: $fz-tag;
-                border: none;
-                margin: auto auto 2rem;
-                padding: 1rem;
-                border-radius: 10rem;
-                width: 60%;
-                background: $color-secondary;
-                color: $color-primary-light;
-                box-shadow: 2px 2px 2px $color-dark;
             }
         }
     }

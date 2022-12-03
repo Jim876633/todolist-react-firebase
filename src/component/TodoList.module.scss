@@ -1,73 +1,117 @@
 @import "../variables";
 @import "../mixin";
-
 .container {
-    width: min(85%, 95rem);
-    height: 70vh;
-    margin: auto;
-    padding: 3rem 4vw;
-    border: 1px solid $color-primary;
-    border-radius: 3rem;
-    background: $color-white;
-    @include respond(phone) {
-        width: 90%;
-        margin-top: 10vh;
-    }
-    .title {
-        position: relative;
-        font-size: $fz-tag-title;
-        font-weight: 600;
-        color: $color-secondary;
-        text-align: center;
-        .buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: $container-h;
+    .tagsButton {
+        display: flex;
+        width: min(calc(85vw - 6rem), 89rem);
+        margin-inline: auto;
+        transform: translateY(1px);
+        @include respond(phone) {
             position: absolute;
+            flex-direction: column;
+            top: 6rem;
             right: 0;
-            top: 50%;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            transform: translateY(-50%);
-            .sortButton,
-            .clearButton {
-                position: relative;
-                width: 4rem;
-                height: 4rem;
-                background: none;
-                border: 1px solid $color-primary;
-                border-radius: 50%;
-                .icon {
-                    @include center;
-                    font-size: 2rem;
-                    color: $color-primary;
-                }
+            background: lighten($color-primary, 5);
+            height: $container-h;
+            width: min(50vw, 20rem);
+            margin-top: 0;
+            transform: translateY(0);
+            z-index: 10;
+            box-shadow: -1px 0 5px $color-dark;
+            transform: translateX(110%);
+            @include speed(0.5s);
+            &.showSidebar {
+                transform: translateX(0);
+            }
+        }
+        .logoutButton {
+            display: none;
+            @include respond(phone) {
+                display: block;
+                font-size: $fz-tag;
+                border: none;
+                margin: auto auto 2rem;
+                padding: 1rem;
+                border-radius: 10rem;
+                width: 60%;
+                background: $color-secondary;
+                color: $color-primary-light;
+                box-shadow: 2px 2px 2px $color-dark;
             }
         }
     }
-    .todoList {
-        margin-top: 2rem;
-        padding: 0 3rem 0 0;
-        height: 75%;
-        overflow-y: auto;
-        .emptyTodoList {
-            font-size: $fz-tag;
-            color: $color-danger;
-            text-align: center;
+    .todoListCard {
+        width: min(85%, 95rem);
+        height: 80%;
+        margin-inline: auto;
+        padding: 3rem 4vw;
+        border: 1px solid $color-primary;
+        border-radius: 3rem;
+        background: $color-white;
+        @include respond(phone) {
+            width: 90%;
         }
-    }
-    .addTodoButton {
-        position: absolute;
-        right: 2vw;
-        bottom: 2vw;
-        width: 5rem;
-        height: 5rem;
-        border: none;
-        border-radius: 50%;
-        background: $color-secondary;
-        box-shadow: 2px 2px 2px $color-dark;
-        .icon {
-            @include center;
-            font-size: 5rem;
-            color: $color-primary-light;
+
+        .title {
+            position: relative;
+            font-size: $fz-tag-title;
+            font-weight: 600;
+            color: $color-secondary;
+            text-align: center;
+            .buttons {
+                position: absolute;
+                right: 0;
+                top: 50%;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                transform: translateY(-50%);
+                .sortButton,
+                .clearButton {
+                    position: relative;
+                    width: 4rem;
+                    height: 4rem;
+                    background: none;
+                    border: 1px solid $color-primary;
+                    border-radius: 50%;
+                    .icon {
+                        @include center;
+                        font-size: 2rem;
+                        color: $color-primary;
+                    }
+                }
+            }
+        }
+        .todoList {
+            margin-top: 2rem;
+            padding: 0 3rem 0 0;
+            height: 75%;
+            overflow-y: auto;
+            .emptyTodoList {
+                font-size: $fz-tag;
+                color: $color-danger;
+                text-align: center;
+            }
+        }
+        .addTodoButton {
+            position: absolute;
+            right: 2vw;
+            bottom: 2vw;
+            width: 5rem;
+            height: 5rem;
+            border: none;
+            border-radius: 50%;
+            background: $color-secondary;
+            box-shadow: 2px 2px 2px $color-dark;
+            .icon {
+                @include center;
+                font-size: 5rem;
+                color: $color-primary-light;
+            }
         }
     }
 }
