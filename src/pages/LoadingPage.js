@@ -2,9 +2,10 @@ import classes from "./LoadingPage.module.scss";
 
 const LoadingPage = () => {
     return (
-        <div className={classes.loading}>
-            <div className={classes.inner}></div>
-        </div>
+        <>
+            <header className={classes.header}></header>
+            <main className={classes.main}></main>
+        </>
     );
 };
 

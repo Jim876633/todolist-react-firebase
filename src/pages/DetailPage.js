@@ -3,8 +3,8 @@ import { TiArrowBack } from "react-icons/ti";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import classes from "./DetailPage.module.scss";
 
+import Loading from "../component/Loading";
 import { useTodoContext } from "../context/todoContext";
-import LoadingPage from "./LoadingPage";
 
 const DetailPage = () => {
     const navigate = useNavigate();
@@ -22,7 +22,7 @@ const DetailPage = () => {
     }, [detailItem, todoList]);
 
     if (!detailItem) {
-        return <LoadingPage />;
+        return <Loading />;
     }
 
     return (

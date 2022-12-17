@@ -55,7 +55,6 @@ const RouteDetectLogin = () => {
             navigate("/");
         }
     }, [isLogin, isLoading, location.pathname]);
-
     if (isLoading) return <LoadingPage />;
     return <Outlet />;
 };

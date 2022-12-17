@@ -1,11 +1,11 @@
 import { FaSortAmountDownAlt, FaTrash } from "react-icons/fa";
 import { MdAdd } from "react-icons/md";
-import LoadingPage from "../pages/LoadingPage";
 import TodoItem from "./TodoItem";
 import classes from "./TodoList.module.scss";
 
 import { firebase } from "../api/firebase";
 import { useTodoContext } from "../context/todoContext";
+import Loading from "./Loading";
 import TagButton from "./TagButton";
 
 const tagsItem = ["overview", "today", "todo", "finish"];
@@ -27,7 +27,7 @@ const TodoList = ({ openModal, showSidebar }) => {
     const showTodoList = () => {
         const todoList = filterTodoList();
         if (!todoList) {
-            return <LoadingPage />;
+            return <Loading />;
         }
         if (todoList.length === 0) {
             return (
