@@ -4,22 +4,27 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import classes from "./DetailPage.module.scss";
 
 import { useTodoContext } from "../context/todoContext";
+import LoadingPage from "./LoadingPage";
 
 const DetailPage = () => {
     const navigate = useNavigate();
     const { detailId } = useParams();
-    const { getTodoItem } = useTodoContext();
+    const { getTodoItem, filterTodoList } = useTodoContext();
+
+    const todoList = filterTodoList();
 
     const detailItem = getTodoItem(detailId);
 
     useEffect(() => {
-        if (!detailItem) {
+        if (todoList && !detailItem) {
             navigate("/error");
         }
-    }, []);
+    }, [detailItem, todoList]);
+
     if (!detailItem) {
-        return;
+        return <LoadingPage />;
     }
+
     return (
         <div className={classes.container}>
             <div className={classes.detailCard}>
