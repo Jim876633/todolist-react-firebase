@@ -1,19 +1,19 @@
 import React from "react";
-import classes from "./TagButton.module.scss";
 import { useTodoContext } from "../context/todoContext";
+import classes from "./TagButton.module.scss";
 
 const TagButton = ({ tagName }) => {
-    const { filterTodoList, tagRef } = useTodoContext();
+    const { filterTodoList, setTag, tag } = useTodoContext();
 
     const tagClickHandler = () => {
-        tagRef.current = tagName;
+        setTag(tagName);
         filterTodoList();
     };
 
     return (
         <button
             className={`${classes.tagButton} ${
-                tagName === tagRef.current && classes.active
+                tagName === tag && classes.active
             }`}
             onClick={tagClickHandler}
         >

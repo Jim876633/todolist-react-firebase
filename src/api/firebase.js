@@ -1,27 +1,28 @@
 import { initializeApp } from "firebase/app";
 import {
     getDatabase,
-    ref,
-    set,
-    remove,
-    update,
     onValue,
+    ref,
+    remove,
+    set,
+    update,
 } from "firebase/database";
 
 import {
-    getAuth,
-    onAuthStateChanged,
-    signOut,
-    signInWithPopup,
     FacebookAuthProvider,
+    getAuth,
     GoogleAuthProvider,
+    onAuthStateChanged,
     signInWithEmailAndPassword,
+    signInWithPopup,
+    signOut,
 } from "firebase/auth";
 
 import { firebaseConfig } from "./config";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+console.log(app);
 
 // fetch data
 const db = getDatabase();
@@ -69,7 +70,6 @@ const loginListener = (setAuthData) => {
             authImage: user?.photoURL,
         };
         setAuthData(data);
-
         // catch facebook photo with token
         if (user?.photoURL && user.photoURL.includes("facebook")) {
             onValue(
@@ -79,7 +79,7 @@ const loginListener = (setAuthData) => {
                     setAuthData((prev) => {
                         return {
                             ...prev,
-                            authImage: prev.authImage + "?access_token=" + data,
+                            authImage: user.photoURL + "?access_token=" + data,
                         };
                     });
                 },
@@ -109,6 +109,9 @@ const login = (media) => {
                 break;
             case "google":
                 provider = new GoogleAuthProvider();
+                break;
+            default:
+                return;
         }
         signInWithPopup(auth, provider)
             .then((result) => {
@@ -128,11 +131,11 @@ const login = (media) => {
     }
 };
 
-const logout = async (setAuthData) => {
+const logout = async () => {
     const auth = getAuth();
     signOut(auth)
         .then(() => {
-            setAuthData({});
+            console.log("sign out");
         })
         .catch((error) => {
             console.log(error);

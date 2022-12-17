@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { Routes, Route, useNavigate, useParams } from "react-router-dom";
-import classes from "./TodoListPage.module.scss";
+import React, { useEffect, useState } from "react";
+import { Route, Routes, useNavigate, useParams } from "react-router-dom";
 import Header from "../component/Header";
-import TodoList from "../component/TodoList";
 import Modal from "../component/Modal";
+import TodoList from "../component/TodoList";
 import DetailPage from "./DetailPage";
 import LoadingPage from "./LoadingPage";
+import classes from "./TodoListPage.module.scss";
 
-import { useTodoContext } from "../context/todoContext";
 import { firebase } from "../api/firebase";
+import { useTodoContext } from "../context/todoContext";
+import { useLogin } from "../hooks/useLogin";
 
 const TodoListPage = () => {
-    const { setEditId, setAuthData, setInitialTodoList, authData } =
-        useTodoContext();
+    const { setEditId, setInitialTodoList } = useTodoContext();
+
+    const { isLogin, isLoading } = useLogin();
 
     const [showModal, setShowModal] = useState(false);
 
@@ -37,24 +39,17 @@ const TodoListPage = () => {
             setShowSidebar((prev) => !prev);
         }
     };
-
-    // login Listen
     useEffect(() => {
-        const removeListener = firebase.loginListener(setAuthData);
-        return () => removeListener();
-    }, []);
-
-    useEffect(() => {
-        if (authData) {
-            if (!authData.uid) {
-                navigate("/");
-            } else {
-                firebase.getTodoList(setInitialTodoList);
-            }
+        if (isLogin) {
+            firebase.getTodoList(setInitialTodoList);
         }
-    }, [authData && authData?.uid]);
+        if (!isLoading && !isLogin) {
+            navigate("/");
+        }
+    }, [isLogin, isLoading]);
 
-    if (!authData || !authData.uid) return <LoadingPage />;
+    if (isLoading) return <LoadingPage />;
+
     return (
         <div className={classes.container}>
             {showModal && <Modal closeModal={closeModal} />}

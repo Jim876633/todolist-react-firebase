@@ -1,30 +1,26 @@
 import React, { useEffect } from "react";
-import classes from "./LoginPage.module.scss";
-import googleIcon from "../image/Google.svg";
 import facebook from "../image/Facebook.svg";
+import googleIcon from "../image/Google.svg";
 import LoadingPage from "./LoadingPage";
+import classes from "./LoginPage.module.scss";
 
 import { useNavigate } from "react-router-dom";
-import { useTodoContext } from "../context/todoContext";
 import { firebase } from "../api/firebase";
+import { useLogin } from "../hooks/useLogin";
 
 const LoginPage = () => {
-    const { authData, setAuthData } = useTodoContext();
     const navigate = useNavigate();
 
-    //login listen
-    useEffect(() => {
-        const removeListener = firebase.loginListener(setAuthData);
-        return () => removeListener();
-    }, []);
+    const { isLogin, isLoading } = useLogin();
 
     useEffect(() => {
-        if (authData && authData.uid) {
+        if (isLogin) {
             navigate("/todoList");
         }
-    }, [authData]);
+    }, [isLogin]);
 
-    if (!authData || authData.uid) return <LoadingPage />;
+    if (isLoading) return <LoadingPage />;
+
     return (
         <div className={classes.container}>
             <div className={classes.login}>

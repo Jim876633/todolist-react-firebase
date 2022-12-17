@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 
 import { TodoContext } from "./todoContext";
 
@@ -7,13 +7,11 @@ import { firebase } from "../api/firebase";
 const TodoProvider = ({ children }) => {
     const [initialTodoList, setInitialTodoList] = useState(null);
 
-    const [todoList, setTodoList] = useState(null);
-
     const [editId, setEditId] = useState(null);
 
     const [authData, setAuthData] = useState(null);
 
-    const tagRef = useRef("today");
+    const [tag, setTag] = useState("today");
 
     const toggleTodoCheck = (id) => {
         const toggleTodo = initialTodoList.find((item) => item.id === id);
@@ -47,18 +45,10 @@ const TodoProvider = ({ children }) => {
         firebase.removeTodo(id);
     };
 
-    const clearTodoList = () => {
-        const newTodoList = initialTodoList.filter((item) => {
-            return !todoList.find((todo) => todo.id === item.id);
-        });
-        setInitialTodoList(newTodoList);
-
-        firebase.clearTodoList(todoList);
-    };
-
     const filterTodoList = () => {
+        if (!initialTodoList) return;
         let newTodoList;
-        switch (tagRef.current) {
+        switch (tag) {
             case "overview":
                 newTodoList = initialTodoList;
                 break;
@@ -77,8 +67,21 @@ const TodoProvider = ({ children }) => {
                 newTodoList = initialTodoList.filter(
                     (item) => item.check === true
                 );
+                break;
+            default:
+                return;
         }
-        setTodoList(newTodoList);
+        return newTodoList;
+    };
+
+    const clearTodoList = () => {
+        const todoList = filterTodoList(initialTodoList);
+        const newTodoList = initialTodoList.filter((item) => {
+            return !todoList.find((todo) => todo.id === item.id);
+        });
+        setInitialTodoList(newTodoList);
+
+        firebase.clearTodoList(todoList);
     };
 
     const sortTodoList = () => {
@@ -100,6 +103,7 @@ const TodoProvider = ({ children }) => {
     };
 
     const getTodoItem = (id) => {
+        const todoList = filterTodoList(initialTodoList);
         //get edit item
         if (editId) {
             const [editTodo] = todoList.filter((item) => item.id === editId);
@@ -124,21 +128,21 @@ const TodoProvider = ({ children }) => {
         };
         return Object.entries(detailItem);
     };
-
-    useEffect(() => {
-        setTodoList(initialTodoList);
-        if (initialTodoList) {
-            filterTodoList();
-        }
-    }, [initialTodoList]);
+    const logoutResetState = () => {
+        setInitialTodoList(null);
+        setEditId(null);
+        setAuthData(null);
+        setTag("today");
+    };
 
     const todoListValue = {
-        todoList,
         editId,
-        tagRef,
+        tag,
         authData,
+        setTag,
         toggleTodoCheck,
         addTodo,
+        logoutResetState,
         removeTodo,
         getTodoItem,
         setEditId,

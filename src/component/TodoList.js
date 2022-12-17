@@ -1,39 +1,38 @@
-import classes from "./TodoList.module.scss";
-import TodoItem from "./TodoItem";
-import LoadingPage from "../pages/LoadingPage";
 import { FaSortAmountDownAlt, FaTrash } from "react-icons/fa";
 import { MdAdd } from "react-icons/md";
+import LoadingPage from "../pages/LoadingPage";
+import TodoItem from "./TodoItem";
+import classes from "./TodoList.module.scss";
 
-import { useTodoContext } from "../context/todoContext";
 import { firebase } from "../api/firebase";
+import { useTodoContext } from "../context/todoContext";
 import TagButton from "./TagButton";
 
 const tagsItem = ["overview", "today", "todo", "finish"];
 
 const TodoList = ({ openModal, showSidebar }) => {
     const {
-        todoList,
+        filterTodoList,
         clearTodoList,
-        setAuthData,
-        setInitialTodoList,
         sortTodoList,
-        tagRef,
+        logoutResetState,
+        tag,
     } = useTodoContext();
 
     const logoutHandler = () => {
-        firebase.logout(setAuthData);
-        setInitialTodoList([]);
-        tagRef.current = "today";
+        logoutResetState();
+        firebase.logout();
     };
 
     const showTodoList = () => {
+        const todoList = filterTodoList();
         if (!todoList) {
             return <LoadingPage />;
         }
         if (todoList.length === 0) {
             return (
                 <div className={classes.emptyTodoList}>
-                    no todo at {tagRef.current} page
+                    no todo at {tag} page
                 </div>
             );
         }
@@ -41,6 +40,7 @@ const TodoList = ({ openModal, showSidebar }) => {
             <TodoItem key={list.id} list={list} openModal={openModal} />
         ));
     };
+
     return (
         <div className={classes.container}>
             <div
@@ -60,7 +60,7 @@ const TodoList = ({ openModal, showSidebar }) => {
             </div>
             <div className={classes.todoListCard}>
                 <div className={classes.title}>
-                    {tagRef.current}
+                    {tag}
                     <div className={classes.buttons}>
                         <button
                             className={classes.sortButton}

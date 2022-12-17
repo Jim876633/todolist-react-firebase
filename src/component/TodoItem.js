@@ -1,12 +1,12 @@
 import React from "react";
-import classes from "./TodoItem.module.scss";
 import { Link } from "react-router-dom";
+import classes from "./TodoItem.module.scss";
 
 import { FaCheck, FaEdit, FaTrashAlt } from "react-icons/fa";
 import { useTodoContext } from "../context/todoContext";
 
 const TodoItem = ({ list, openModal }) => {
-    const { toggleTodoCheck, removeTodo, setEditId, tagRef } = useTodoContext();
+    const { toggleTodoCheck, removeTodo, setEditId, tag } = useTodoContext();
 
     const { id, title, priority, date, time, check } = list;
 
@@ -42,7 +42,7 @@ const TodoItem = ({ list, openModal }) => {
                 {priority}
             </div>
             <div className={classes.time}>
-                {tagRef.current === "today" ? time : date.replace(/-/g, "/")}
+                {tag === "today" ? time : date.replace(/-/g, "/")}
             </div>
             <Link
                 className={classes.detailButton}

@@ -1,27 +1,25 @@
 import React from "react";
 import classes from "./Header.module.scss";
 
-import { useTodoContext } from "../context/todoContext";
 import { firebase } from "../api/firebase";
+import { useTodoContext } from "../context/todoContext";
 
 import guestImage from "../image/blank-profile-picture.png";
 
 const Header = ({ toggleSidebar }) => {
-    const { authData, tagRef, setAuthData, setInitialTodoList } =
-        useTodoContext();
+    const { authData, logoutResetState } = useTodoContext();
 
     const reg = new RegExp(/[A-Za-z]/);
 
     const logoutHandler = () => {
-        firebase.logout(setAuthData);
-        setInitialTodoList([]);
-        tagRef.current = "today";
+        logoutResetState();
+        firebase.logout();
     };
 
     return (
         <header className={classes.header}>
             <div className={classes.logo}>todo list</div>
-            {authData.uid && (
+            {authData?.uid && (
                 <div className={classes.profile}>
                     <div className={classes.greet}>
                         <span
@@ -39,6 +37,7 @@ const Header = ({ toggleSidebar }) => {
                         <img
                             src={authData.authImage || guestImage}
                             className={classes.image}
+                            alt="user"
                         />
                     </div>
                 </div>
