@@ -2,15 +2,9 @@
 @import "../mixin";
 
 .container {
-    position: relative;
-    width: min(85%, 95rem);
-    height: 55rem;
-    margin: auto;
-    padding: 3rem 10rem;
-    border: 1px solid $color-primary;
-    border-radius: 3rem;
-    background: $color-white;
-    transform: translateY(-4rem);
+    height: $container-h;
+    display: flex;
+    align-items: center;
     @include respond(phone) {
         width: 90%;
         margin-top: 10vh;
@@ -26,87 +20,98 @@
         background: lighten($color-primary, 10);
         border-radius: 1rem;
     }
-    & > .title {
-        font-size: $fz-tag-title;
-        font-weight: 600;
-        color: $color-secondary;
-        text-align: center;
-        margin-bottom: 3rem;
-    }
-    .item {
+    .detailCard {
         display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        height: 3rem;
-        color: $color-secondary;
-        font-size: $fz-text;
-        margin: 2.5rem 0;
-        .itemTitle {
-            display: inline-block;
-            width: 8rem;
+        flex-direction: column;
+        gap: 2rem;
+        position: relative;
+        width: min(85%, 95rem);
+        height: 80%;
+        padding: 3rem 10rem;
+        margin-inline: auto;
+        border: 1px solid $color-primary;
+        border-radius: 3rem;
+        background: $color-white;
+        & > .title {
+            font-size: $fz-tag-title;
             font-weight: 600;
-            margin-right: 1rem;
-            text-align: right;
+            color: $color-secondary;
+            text-align: center;
         }
-        .priority {
-            border-radius: 1rem;
-            padding: 0.5rem 1rem;
-            &.low {
-                @include priorityStyle(low);
+        .item {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            color: $color-secondary;
+            font-size: $fz-text;
+            &:has(.detail) {
+                align-items: flex-start;
+                height: 100%;
+                //fix flex box overflow scroll not working
+                min-height: 0;
             }
-            &.medium {
-                @include priorityStyle(medium);
+            .itemTitle {
+                display: inline-block;
+                width: 8rem;
+                font-weight: 600;
+                margin-right: 1rem;
+                text-align: right;
             }
-            &.high {
-                @include priorityStyle(high);
+            .priority {
+                border-radius: 1rem;
+                padding: 0.5rem 1rem;
+                &.low {
+                    @include priorityStyle(low);
+                }
+                &.medium {
+                    @include priorityStyle(medium);
+                }
+                &.high {
+                    @include priorityStyle(high);
+                }
             }
-        }
 
-        .title,
-        .detail {
-            background: $color-primary-light;
-            border-radius: 1rem;
-            padding: 0.5rem 1rem;
-            align-self: flex-start;
-            flex: 1 1;
-            width: 20rem;
-            overflow: auto;
-        }
-        .title {
-            white-space: nowrap;
-        }
-        .detail {
-            display: block;
-            height: 15rem;
-            word-wrap: break-word;
-            @include respond(ipad) {
-                height: 30vh;
+            .title,
+            .detail {
+                background: $color-primary-light;
+                border-radius: 1rem;
+                padding: 0.5rem 1rem;
+                width: 100%;
+                overflow: auto;
+            }
+            .title {
+                white-space: nowrap;
+            }
+            .detail {
+                display: block;
+                height: 100%;
+                word-wrap: break-word;
             }
         }
-    }
-    .backButton {
-        position: absolute;
-        top: 3rem;
-        right: 3rem;
-        width: 5rem;
-        height: 5rem;
-        border: none;
-        border-radius: 50%;
-        background: lighten($color-primary, 15);
-        box-shadow: 2px 2px 2px $color-dark;
-        @include speed(0.2s);
-        &:hover {
-            background: $color-primary;
-            .icon {
-                color: $color-dark;
-            }
-        }
-        .icon {
+        .backButton {
+            position: absolute;
+            top: 3rem;
+            right: 3rem;
+            width: 5rem;
+            height: 5rem;
+            border: none;
+            border-radius: 50%;
+            background: lighten($color-primary, 15);
+            box-shadow: 2px 2px 2px $color-dark;
             @include speed(0.2s);
-            @include center;
-            width: 90%;
-            height: 70%;
-            color: $color-white;
+            &:hover {
+                background: $color-primary;
+                .icon {
+                    color: $color-dark;
+                }
+            }
+            .icon {
+                @include speed(0.2s);
+                @include center;
+                width: 90%;
+                height: 70%;
+                color: $color-white;
+            }
         }
     }
 }

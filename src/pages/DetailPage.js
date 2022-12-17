@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import classes from "./DetailPage.module.scss";
 import { TiArrowBack } from "react-icons/ti";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import classes from "./DetailPage.module.scss";
 
 import { useTodoContext } from "../context/todoContext";
 
@@ -23,25 +22,27 @@ const DetailPage = () => {
     }
     return (
         <div className={classes.container}>
-            <Link className={classes.backButton} to={"/todolist"}>
-                <TiArrowBack className={classes.icon} />
-            </Link>
-            <div className={classes.title}>detail</div>
-            {detailItem.map(([itemTitle, value]) => (
-                <div className={classes.item} key={itemTitle}>
-                    <span className={classes.itemTitle}>
-                        {itemTitle}
-                        {"  "}:
-                    </span>
-                    <span
-                        className={`${classes[itemTitle]} ${
-                            itemTitle === "priority" && classes[value]
-                        }`}
-                    >
-                        {value}
-                    </span>
-                </div>
-            ))}
+            <div className={classes.detailCard}>
+                <Link className={classes.backButton} to={"/todolist"}>
+                    <TiArrowBack className={classes.icon} />
+                </Link>
+                <div className={classes.title}>detail</div>
+                {detailItem.map(([itemTitle, value]) => (
+                    <div className={classes.item} key={itemTitle}>
+                        <span className={classes.itemTitle}>
+                            {itemTitle}
+                            {"  "}:
+                        </span>
+                        <span
+                            className={`${classes[itemTitle]} ${
+                                itemTitle === "priority" && classes[value]
+                            }`}
+                        >
+                            {value}
+                        </span>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

@@ -22,7 +22,6 @@ import { firebaseConfig } from "./config";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-console.log(app);
 
 // fetch data
 const db = getDatabase();

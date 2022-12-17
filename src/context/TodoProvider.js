@@ -104,6 +104,7 @@ const TodoProvider = ({ children }) => {
 
     const getTodoItem = (id) => {
         const todoList = filterTodoList(initialTodoList);
+        if (!todoList) return;
         //get edit item
         if (editId) {
             const [editTodo] = todoList.filter((item) => item.id === editId);
